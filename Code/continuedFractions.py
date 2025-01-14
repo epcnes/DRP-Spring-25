@@ -2,7 +2,7 @@ import numpy as np
 from collections import Counter
 from matplotlib import pyplot as plt
 from random import random as rand
-"""Algorithm 1"""
+'''contfrac(r, n) -> list'''
 # |  as seen in Kopparty, pg. 1:
 # |  take any r in the reals, then
 # |  r = floor(r) + 1/r_1
@@ -24,11 +24,12 @@ def contFrac(r, n: int):
     return arr
 
 '''getData(r) -> list'''
-# |  returns the simple continued fraction of a given real number in list form
+# |  here "arr" means the simple continued fraction of r in list form
+# | 
+# |  returns statistical information about arr 
+# |  
 # |  @params r real number to approximate
 # |  
-# |  here "arr" means the simple continued fraction of r in list form
-# |
 # |  @returns rX the list of unique denominators
 # |  @returns rY the frequency of denominators
 # |  @returns mean the mean of the elements in arr
@@ -40,15 +41,16 @@ def getData(r):
     rDict = dict(Counter(rArr))
     rX, rY = (list(rDict.keys()), list(rDict.values()))
 
-    mean = np.mean(r)
-    std = np.std(r)
+    mean = np.float64(np.mean(r))
+    std = np.float64(np.std(r))
     outlierQ3 = np.quantile(r, .75) + (1.5*std)
     outlierQ1 = np.quantile(r, .25) + (1.5*std)
 
-    return [rX, rY, mean, std, outlierQ3, outlierQ1, np.max(rX)]    
+    print(rX, rY, mean, std, outlierQ3, outlierQ1, np.max(rX), np.equal(mean, r))
+    plt.boxplot(rX)
+    plt.show()
+    # return [rX, rY, mean, std, outlierQ3, outlierQ1, np.max(rX)] #
 
-r = np.pi
-[piX, piY, piMean, piSTD, piOutlierQ1, piOutlierQ3, max] = getData(r)
-print(r, piX, piMean, piSTD, piOutlierQ1, piOutlierQ3, max)
-plt.boxplot(piX)
-plt.show()
+r = np.float64(np.sqrt(rand()))
+print(r)
+getData(r)
