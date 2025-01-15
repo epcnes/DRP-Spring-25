@@ -3,14 +3,14 @@ from collections import Counter
 from matplotlib import pyplot as plt
 from random import random as rand
 '''contfrac(r, n) -> list'''
-# |  as seen in Kopparty, pg. 1:
+# |  As seen in Kopparty, pg. 1:
 # |  take any r in the reals, then
 # |  r = floor(r) + 1/r_1
 # |  r_(n-1) = floor(r_(n-1)) + 1/r_n
 # |  etc.
 # | 
 # |  @param r real number to approximate
-# |  @param n number of terms to calculate
+# |  @param n max number of terms to calculate
 # |
 # |  @returns arr the list form of the simple continued fraction of r
 def contFrac(r, n: int):
@@ -46,7 +46,7 @@ def getData(r):
     outlierQ3 = np.quantile(r, .75) + (1.5*std)
     outlierQ1 = np.quantile(r, .25) + (1.5*std)
 
-    print(rX, rY, mean, std, outlierQ3, outlierQ1, np.max(rX), np.equal(mean, r))
+    print(rX, mean, std, outlierQ3, outlierQ1, np.max(rX), np.equal(mean, r))
     plt.boxplot(rX)
     plt.show()
     # return [rX, rY, mean, std, outlierQ3, outlierQ1, np.max(rX)] #
