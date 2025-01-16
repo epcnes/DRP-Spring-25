@@ -2,6 +2,7 @@ import numpy as np
 from collections import Counter
 from matplotlib import pyplot as plt
 from random import random as rand
+from random import randint
 '''contfrac(r, n) -> list'''
 # |  As seen in Kopparty, pg. 1:
 # |  take any r in the reals, then
@@ -46,11 +47,11 @@ def getData(r):
     outlierQ3 = np.quantile(r, .75) + (1.5*std)
     outlierQ1 = np.quantile(r, .25) + (1.5*std)
 
-    print(rX, mean, std, outlierQ3, outlierQ1, np.max(rX), np.equal(mean, r))
+    print(f"Unique terms: {rX} \nMean of all terms: {mean} \nStandard Deviation: {std} \nUpper outlier: {outlierQ3} \nLower outlier: {outlierQ1} \nMax of terms: {np.max(rX)}")
     plt.boxplot(rX)
     plt.show()
     # return [rX, rY, mean, std, outlierQ3, outlierQ1, np.max(rX)] #
 
-r = np.float64(np.sqrt(rand()))
+r = np.float64(np.sqrt(rand()*randint(-1000, 1000)))
 print(r)
 getData(r)
