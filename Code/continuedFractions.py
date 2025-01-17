@@ -40,18 +40,12 @@ def getData(r):
     n = 1000
     rArr = contFrac(r, n)
     rDict = dict(Counter(rArr))
-    rX, rY = (list(rDict.keys()), list(rDict.values()))
 
     mean = np.float64(np.mean(r))
     std = np.float64(np.std(r))
-    outlierQ3 = np.quantile(r, .75) + (1.5*std)
-    outlierQ1 = np.quantile(r, .25) + (1.5*std)
 
-    print(f"Unique terms: {rX} \nMean of all terms: {mean} \nStandard Deviation: {std} \nUpper outlier: {outlierQ3} \nLower outlier: {outlierQ1} \nMax of terms: {np.max(rX)}")
-    plt.boxplot(rX)
-    plt.show()
+    return rDict, mean
+    # print(f"Unique terms: {rX} \nMean of all terms: {mean} \nStandard Deviation: {std} \nUpper outlier: {outlierQ3} \nLower outlier: {outlierQ1} \nMax of terms: {np.max(rX)}")
+    # plt.boxplot(rX)
+    # plt.show()
     # return [rX, rY, mean, std, outlierQ3, outlierQ1, np.max(rX)] #
-
-r = np.float64(np.sqrt(rand()*randint(-1000, 1000)))
-print(r)
-getData(r)
