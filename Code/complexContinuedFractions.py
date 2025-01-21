@@ -30,5 +30,5 @@ def getData(c : iter):
     xSTD = np.std(x)
     ySTD = np.std(y)
 
-    print(f"Term Counter: {zDict}\nx mean: {xMean}\nsd: {xSTD}\ny mean: {yMean}\nsd: {ySTD}")
-    return x, y
+    # print(f"Term Counter: {zDict}\nx mean: {xMean}\nsd: {xSTD}\ny mean: {yMean}\nsd: {ySTD}")
+    return x, y, zDict
