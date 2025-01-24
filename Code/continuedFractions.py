@@ -3,17 +3,16 @@ from collections import Counter
 from matplotlib import pyplot as plt
 from random import random as rand
 from random import randint
-'''contfrac(r, n) -> list'''
-# |  As seen in Kopparty, pg. 1:
-# |  take any r in the reals, then
-# |  r = floor(r) + 1/r_1
-# |  r_(n-1) = floor(r_(n-1)) + 1/r_n
-# |  etc.
-# | 
-# |  @param r real number to approximate
-# |  @param n max number of terms to calculate
-# |
-# |  @returns arr the list form of the simple continued fraction of r
+''' contfrac(r, n) -> list
+As seen in Kopparty, pg. 1:
+take any r in the reals, then
+r = floor(r) + 1/r_1
+r_(n-1) = floor(r_(n-1)) + 1/r_n
+etc.
+@param r real number to approximate
+@param n max number of terms to calculate
+@returns arr the list form of the simple continued fraction of r
+'''
 def contFrac(r, n: int):
     arr = []
     for _ in range(n):
@@ -24,18 +23,18 @@ def contFrac(r, n: int):
         r = 1 / (r-a)
     return arr
 
-'''getData(r) -> list'''
-# |  here "arr" means the simple continued fraction of r in list form
-# | 
-# |  returns statistical information about arr 
-# |  
-# |  @params r real number to approximate
-# |  
-# |  @returns rX the list of unique denominators
-# |  @returns rY the frequency of denominators
-# |  @returns mean the mean of the elements in arr
-# |  @returns std the standard deviation of elements in arr
-# |  @returns outlier calculated as Q3 + 1.5*std
+''' getData(r) -> list
+here "arr" means the simple continued fraction of r in list form
+returns statistical information about arr 
+
+@params r real number to approximate
+
+@returns rX the list of unique denominators
+@returns rY the frequency of denominators
+@returns mean the mean of the elements in arr
+@returns std the standard deviation of elements in arr
+@returns outlier calculated as Q3 + 1.5*std
+'''
 def getData(r):
     n = 1000
     rArr = contFrac(r, n)
@@ -49,3 +48,19 @@ def getData(r):
     # plt.boxplot(rX)
     # plt.show()
     # return [rX, rY, mean, std, outlierQ3, outlierQ1, np.max(rX)] #
+
+''' compContFrac(x) -> float
+calculates the value of a given simple continued fraction in list form
+
+@params x list form of a real number
+
+@returns approximation of a real number
+'''
+def compContFrac(x : list):
+    sum = 0
+    for c in reversed(x):
+        if sum == 0:
+            sum = c
+        else:
+            sum = c + 1 / sum
+    return sum
