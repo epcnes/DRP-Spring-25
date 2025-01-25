@@ -43,7 +43,7 @@ def getData(r):
     mean = np.float64(np.mean(r))
     std = np.float64(np.std(r))
 
-    return rDict, mean
+    return rDict, mean, rArr
     # print(f"Unique terms: {rX} \nMean of all terms: {mean} \nStandard Deviation: {std} \nUpper outlier: {outlierQ3} \nLower outlier: {outlierQ1} \nMax of terms: {np.max(rX)}")
     # plt.boxplot(rX)
     # plt.show()

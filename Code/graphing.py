@@ -1,8 +1,8 @@
-from complexContinuedFractions import aHurwitz, getData
+from complexContinuedFractions import getData
 import numpy as np
 from matplotlib import pyplot as plt
 """
-Graphing terms of a continued fraction of a complex number
+Graphing terms of a complex continued fraction
 """
 
 # z = random()*randint(-1000, 1000) + random()*randint(-1000, 1000)*1j
