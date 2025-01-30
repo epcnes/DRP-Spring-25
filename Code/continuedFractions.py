@@ -15,7 +15,7 @@ etc.
 '''
 def contFrac(r, n: int):
     arr = []
-    for _ in range(n):
+    for _ in range(n+1):
         a = int(r)
         arr.append(a)
         if r-a == 0:
@@ -32,18 +32,15 @@ returns statistical information about arr
 @returns rX the list of unique denominators
 @returns rY the frequency of denominators
 @returns mean the mean of the elements in arr
-@returns std the standard deviation of elements in arr
-@returns outlier calculated as Q3 + 1.5*std
 '''
-def getData(r):
-    n = 1000
+def getData(r, n):
     rArr = contFrac(r, n)
     rDict = dict(Counter(rArr))
 
-    mean = np.float64(np.mean(r))
-    std = np.float64(np.std(r))
+    mean = np.float64(np.mean(rArr))
+    std = np.float64(np.std(rArr))
 
-    return rDict, mean, rArr
+    return rDict, mean, rArr, std
     # print(f"Unique terms: {rX} \nMean of all terms: {mean} \nStandard Deviation: {std} \nUpper outlier: {outlierQ3} \nLower outlier: {outlierQ1} \nMax of terms: {np.max(rX)}")
     # plt.boxplot(rX)
     # plt.show()
